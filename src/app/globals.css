@@ -1,26 +1,106 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Theme */
+  --light-theme-bg: #f9fafb;
+  --light-theme-surface: #ffffff;
+  --light-theme-text: #111827;
+  --light-theme-text-secondary: #6b7280;
+  --light-theme-accent: #2563eb;
+  --light-theme-accent-hover: #1d4ed8;
+  --light-theme-border: #e5e7eb;
+
+  /* Dark Theme */
+  --dark-theme-bg: #0f172a;
+  --dark-theme-surface: #1e293b;
+  --dark-theme-text: #f9fafb;
+  --dark-theme-text-secondary: #94a3b8;
+  --dark-theme-accent: #3b82f6;
+  --dark-theme-accent-hover: #60a5fa;
+  --dark-theme-border: #334155;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.light-theme {
+  background-color: var(--light-theme-bg);
+  color: var(--light-theme-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark-theme {
+  background-color: var(--dark-theme-bg);
+  color: var(--dark-theme-text);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+}
+
+body{
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+}
+
+img{
+  user-select: none;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.container{
+  min-height: 100vh;
+  background-color: #0f172a;
+}
+
+.wrapper{
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 80px;
+  background-color: var(--light-theme-surface);
+}
+
+@media (max-width: 1536px) {
+  .wrapper{
+    max-width: 1366px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-width: 1280px) {
+  .wrapper{
+    max-width: 1024px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper{
+    max-width: 768px;
+  }
+  .wrapper{
+    padding: 0 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper{
+    max-width: 640px;
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrapper{
+    max-width: 475px;
+    padding: 0 20px;
+  }
 }
