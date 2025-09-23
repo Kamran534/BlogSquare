@@ -28,7 +28,7 @@ export default function Navbar() {
         <nav className="flex h-16 items-center justify-between gap-3 md:grid md:grid-cols-3 md:gap-0">
           <div className={`flex items-center gap-3 ${open ? 'md:opacity-100 opacity-0' : ''} md:justify-start`}>
             <Link href="/" className="flex items-center gap-2">
-              <Image src="/logo.png" alt="BlogSquare logo" width={32} height={32} />
+              <Image src="/logo.png" alt="BlogSquare logo" width={32} height={32} style={{ width: "auto", height: "auto" }} />
               <span className="text-xl font-bold tracking-tight">BlogSquare</span>
             </Link>
           </div>
@@ -77,7 +77,7 @@ export default function Navbar() {
             </nav>
           </div>
           <div className="absolute bottom-6 left-0 right-0 flex items-center justify-center text-xs text-muted">
-            © Kamran
+            © Kamran 
           </div>
         </div>
       </div>
