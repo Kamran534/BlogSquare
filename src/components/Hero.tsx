@@ -115,17 +115,17 @@ function HeroMobile() {
   return (
     <section className="relative overflow-hidden py-10 pt-10">
       <div className="mx-auto max-w-xl px-5">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 inline-flex items-center justify-center gap-2 rounded-full border border-ui/60 bg-surface/70 px-4 py-1.5 text-xs text-muted backdrop-blur w-8/12 max-w-sm">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 inline-flex items-center justify-center gap-2 rounded-full border border-ui/60 bg-surface/70 px-4 py-1.5 text-xs text-muted backdrop-blur w-9/12 max-w-sm">
           <span className="h-2 w-2 rounded-full gradient-accent" />
           AI-powered blogging for everyone
         </div>
-        <div className="relative mb-6 h-[30rem] sm:h-[34rem] w-full overflow-hidden rounded-2xl">
+        <div className="relative  h-[20rem] sm:h-[24rem] w-full overflow-hidden rounded-2xl">
           {images.map((img, idx) => (
             <img
               key={img.alt}
               src={img.url}
               alt={img.alt}
-              className="absolute mt-12 inset-0 h-full w-full object-cover transition-opacity duration-500"
+              className="absolute mt-3 inset-0 h-full w-full object-cover transition-opacity duration-500"
               style={{ opacity: active === idx ? 1 : 0 }}
             />
           ))}
