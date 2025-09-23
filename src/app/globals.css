@@ -1,31 +1,34 @@
 :root {
-  /* Light Theme */
-  --light-theme-bg: #f9fafb;
-  --light-theme-surface: #ffffff;
-  --light-theme-text: #111827;
-  --light-theme-text-secondary: #6b7280;
-  --light-theme-accent: #2563eb;
-  --light-theme-accent-hover: #1d4ed8;
-  --light-theme-border: #e5e7eb;
-
-  /* Dark Theme */
-  --dark-theme-bg: #0f172a;
-  --dark-theme-surface: #1e293b;
-  --dark-theme-text: #f9fafb;
-  --dark-theme-text-secondary: #94a3b8;
-  --dark-theme-accent: #3b82f6;
-  --dark-theme-accent-hover: #60a5fa;
-  --dark-theme-border: #334155;
+  /* Theme-agnostic tokens (resolved per theme class) */
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --border: #e5e7eb;
 }
 
+/* Light theme values */
 .light-theme {
-  background-color: var(--light-theme-bg);
-  color: var(--light-theme-text);
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --border: #e5e7eb;
 }
 
+/* Dark theme values */
 .dark-theme {
-  background-color: var(--dark-theme-bg);
-  color: var(--dark-theme-text);
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --text: #f9fafb;
+  --text-secondary: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --border: #334155;
 }
 
 *{
@@ -41,6 +44,9 @@
 body{
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 html,body{
@@ -59,7 +65,13 @@ a{
 
 .container{
   min-height: 100vh;
-  background-color: #0f172a;
+}
+
+.surface {
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
 .wrapper{
@@ -67,7 +79,29 @@ a{
   margin-left: auto;
   margin-right: auto;
   padding: 0 80px;
-  background-color: var(--light-theme-surface);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background-color: var(--surface);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
 }
 
 @media (max-width: 1536px) {
