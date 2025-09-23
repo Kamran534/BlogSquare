@@ -34,11 +34,11 @@ export default function Navbar() {
           </div>
 
           {/* Desktop nav */}
-          <div className="hidden items-center gap-5 text-sm font-medium md:flex md:justify-center md:col-start-2">
-            <Link href="/" className={`nav-underline rounded-md px-3 py-2 hover:bg-surface/60 transition-colors ${pathname === "/" ? "nav-link-active" : ""}`}>Home</Link>
-            <Link href="/contact" className={`nav-underline rounded-md px-3 py-2 hover:bg-surface/60 transition-colors ${pathname === "/contact" ? "nav-link-active" : ""}`}>Contact</Link>
-            <Link href="/about" className={`nav-underline rounded-md px-3 py-2 hover:bg-surface/60 transition-colors ${pathname === "/about" ? "nav-link-active" : ""}`}>About</Link>
-            <Link href="/login" className={`nav-underline rounded-md px-3 py-2 hover:bg-surface/60 transition-colors ${pathname === "/login" ? "nav-link-active" : ""}`}>Login</Link>
+          <div className="desktop-nav hidden items-center gap-4 text-sm font-medium md:flex md:justify-center md:col-start-2">
+            <Link href="/" className={`nav-underline rounded-md px-3 py-2 md:px-2 md:py-1 md:text-[0.9rem] hover:bg-surface/60 transition-colors ${pathname === "/" ? "nav-link-active" : ""}`}>Home</Link>
+            <Link href="/contact" className={`nav-underline rounded-md px-3 py-2 md:px-2 md:py-1 md:text-[0.9rem] hover:bg-surface/60 transition-colors ${pathname === "/contact" ? "nav-link-active" : ""}`}>Contact</Link>
+            <Link href="/about" className={`nav-underline rounded-md px-3 py-2 md:px-2 md:py-1 md:text-[0.9rem] hover:bg-surface/60 transition-colors ${pathname === "/about" ? "nav-link-active" : ""}`}>About</Link>
+            <Link href="/login" className={`nav-underline rounded-md px-3 py-2 md:px-2 md:py-1 md:text-[0.9rem] hover:bg-surface/60 transition-colors ${pathname === "/login" ? "nav-link-active" : ""}`}>Login</Link>
           </div>
 
           <div className="flex items-center gap-2 md:justify-end md:col-start-3">

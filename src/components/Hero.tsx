@@ -5,54 +5,146 @@ import { useEffect, useMemo, useState } from "react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-6rem)] flex items-center py-14 sm:py-20">
+    <>
+      <div className="md:hidden">
+        <HeroMobile />
+      </div>
+      <div className="hidden md:block">
+        <HeroDesktop />
+      </div>
+    </>
+  );
+}
+
+function HeroDesktop() {
+  return (
+    <section className="relative overflow-hidden min-h-[calc(100vh-6rem)] flex items-center py-10 sm:py-18">
       <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-10 md:grid-cols-2">
+          <DesktopLeft />
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-ui px-3 py-1 text-xs text-muted">
-              <span className="h-2 w-2 rounded-full gradient-accent" />
-              AI-powered blogging for everyone
-            </div>
-            <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
-              Share ideas faster with <span className="text-[var(--accent)]">intelligent tools</span>
-            </h1>
-            <p className="mt-4 max-w-prose text-base text-muted sm:text-lg">
-              Draft, edit, and publish beautiful posts in minutes. Let smart
-              suggestions help you find the right words while you stay in
-              control.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                href="/login"
-                className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-colors gradient-accent hover:brightness-110"
-              >
-                Get started
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center justify-center rounded-md border border-ui bg-surface px-5 py-2.5 text-sm font-medium text-body hover:bg-surface/70"
-              >
-                Learn more
-              </Link>
-            </div>
-
-            <div className="mt-6 flex items-center gap-6 text-xs text-muted">
-              <div>No credit card required</div>
-              <div className="h-1 w-1 rounded-full gradient-accent" />
-              <div>Free tier available</div>
-            </div>
-          </div>
-
-          <div className="hidden md:block">
             <CardStack />
           </div>
         </div>
-
-        {/* Global centered category bar synced with cards */}
         <div className="mt-6 flex w-full items-center justify-center">
           <CategoryBar />
         </div>
+      </div>
+    </section>
+  );
+}
+
+function DesktopLeft() {
+  return (
+    <div>
+      <div className="inline-flex items-center gap-2 rounded-full border border-ui px-3 py-1 text-xs text-muted">
+        <span className="h-2 w-2 rounded-full gradient-accent" />
+        AI-powered blogging for everyone
+      </div>
+      <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        Share ideas faster with <span className="text-[var(--accent)]">intelligent tools</span>
+      </h1>
+      <p className="mt-4 max-w-prose text-base text-muted sm:text-lg">
+        Draft, edit, and publish beautiful posts in minutes. Let smart
+        suggestions help you find the right words while you stay in
+        control.
+      </p>
+
+      <div className="mt-8 flex flex-wrap items-center gap-3">
+        <Link
+          href="/login"
+          className="inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-colors gradient-accent hover:brightness-110"
+        >
+          Get started
+        </Link>
+        <Link
+          href="/about"
+          className="inline-flex items-center justify-center rounded-md border border-ui bg-surface px-5 py-2.5 text-sm font-medium text-body hover:bg-surface/70"
+        >
+          Learn more
+        </Link>
+      </div>
+
+      <div className="mt-6 flex items-center gap-6 text-xs text-muted">
+        <div>No credit card required</div>
+        <div className="h-1 w-1 rounded-full gradient-accent" />
+        <div>Free tier available</div>
+      </div>
+    </div>
+  );
+}
+
+function HeroMobile() {
+  const images = useMemo(
+    () => [
+      {
+        alt: "Technology",
+        url:
+          "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
+      },
+      {
+        alt: "Design",
+        url:
+          "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop",
+      },
+      {
+        alt: "Product",
+        url:
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
+      },
+      {
+        alt: "Culture",
+        url:
+          "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop",
+      },
+      {
+        alt: "Tutorials",
+        url:
+          "https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop",
+      },
+    ],
+    []
+  );
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, [images.length]);
+  return (
+    <section className="relative overflow-hidden py-10 pt-10">
+      <div className="mx-auto max-w-xl px-5">
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 inline-flex items-center justify-center gap-2 rounded-full border border-ui/60 bg-surface/70 px-4 py-1.5 text-xs text-muted backdrop-blur w-8/12 max-w-sm">
+          <span className="h-2 w-2 rounded-full gradient-accent" />
+          AI-powered blogging for everyone
+        </div>
+        <div className="relative mb-6 h-[30rem] sm:h-[34rem] w-full overflow-hidden rounded-2xl">
+          {images.map((img, idx) => (
+            <img
+              key={img.alt}
+              src={img.url}
+              alt={img.alt}
+              className="absolute mt-12 inset-0 h-full w-full object-cover transition-opacity duration-500"
+              style={{ opacity: active === idx ? 1 : 0 }}
+            />
+          ))}
+        </div>
+        <h1 className="mt-4 text-3xl font-bold tracking-tight">
+          Share ideas faster with <span className="text-[var(--accent)]">intelligent tools</span>
+        </h1>
+        <p className="mt-3 text-sm text-muted">
+          Draft, edit, and publish beautiful posts in minutes. Let smart suggestions help you find the right words while you stay in control.
+        </p>
+        <div className="mt-6 flex items-center gap-3">
+          <Link href="/login" className="inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors gradient-accent">
+            Get started
+          </Link>
+          <Link href="/about" className="inline-flex items-center justify-center rounded-md border border-ui bg-surface px-4 py-2 text-sm font-medium text-body">
+            Learn more
+          </Link>
+        </div>
+
       </div>
     </section>
   );

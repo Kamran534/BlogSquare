@@ -158,14 +158,14 @@ header .page-container{
 .nav-underline::after{
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px; /* small gap from text */
-  height: 2px;
+  left: .4rem; /* keep underline within text width */
+  right: .4rem; /* match horizontal padding */
+  bottom: 0px; /* increase gap below text on desktop */
+  height: 1.5px; /* slimmer */
   background-color: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 200ms ease-in-out;
+  transition: transform 160ms ease-in-out;
 }
 .nav-underline:hover::after,
 .nav-underline:focus-visible::after{
