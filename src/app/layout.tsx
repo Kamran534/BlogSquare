@@ -1,9 +1,10 @@
 import "./globals.css";
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "../components/ThemeProvider";
+import Script from "next/script";
+import Navbar from "../components/Navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,14 +32,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            (function() {
+              try {
+                var stored = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var theme = stored || (prefersDark ? 'dark-theme' : 'light-theme');
+                var root = document.documentElement;
+                root.classList.remove('light-theme','dark-theme');
+                root.classList.add(theme);
+              } catch (e) {}
+            })();
+          `}
+        </Script>
         <ThemeProvider>
-          <div className="container">
-            <div className="wrapper">
-              {children}
-            </div>
-          </div>
+          <Navbar />
+          <main className="page-container">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

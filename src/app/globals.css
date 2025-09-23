@@ -1,12 +1,16 @@
+@import "tailwindcss";
+
 :root {
   /* Theme-agnostic tokens (resolved per theme class) */
   --bg: #f9fafb;
   --surface: #ffffff;
   --text: #111827;
   --text-secondary: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --accent: #f97316; /* orange-500 */
+  --accent-hover: #ea580c; /* orange-600 */
   --border: #e5e7eb;
+  --accent-gradient-start: #fb923c; /* orange-400 */
+  --accent-gradient-end: #f97316; /* orange-500 */
 }
 
 /* Light theme values */
@@ -15,9 +19,11 @@
   --surface: #ffffff;
   --text: #111827;
   --text-secondary: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --accent: #f97316; /* orange-500 */
+  --accent-hover: #ea580c; /* orange-600 */
   --border: #e5e7eb;
+  --accent-gradient-start: #fb923c; /* orange-400 */
+  --accent-gradient-end: #f97316; /* orange-500 */
 }
 
 /* Dark theme values */
@@ -26,9 +32,11 @@
   --surface: #1e293b;
   --text: #f9fafb;
   --text-secondary: #94a3b8;
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
+  --accent: #fb923c; /* orange-400 */
+  --accent-hover: #f97316; /* orange-500 */
   --border: #334155;
+  --accent-gradient-start: #f59e0b; /* amber-500-ish for warmth */
+  --accent-gradient-end: #fb923c; /* orange-400 */
 }
 
 *{
@@ -63,45 +71,43 @@ a{
   text-decoration: none;
 }
 
-.container{
-  min-height: 100vh;
-}
+/* Utility helpers for CSS var usage with Tailwind */
+.bg-surface { background-color: var(--surface); }
+.bg-page { background-color: var(--bg); }
+.text-body { color: var(--text); }
+.text-muted { color: var(--text-secondary); }
+.border-ui { border-color: var(--border); }
+.gradient-accent { background-image: linear-gradient(90deg, var(--accent-gradient-start), var(--accent-gradient-end)); }
 
-.surface {
-  background-color: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-}
-
-.wrapper{
-  max-width: 1536px;
+/* Responsive page container: consistent margins and paddings per breakpoint */
+.page-container{
   margin-left: auto;
   margin-right: auto;
-  padding: 0 80px;
+  max-width: 1536px;
+  padding-left: 1.25rem; /* 20px */
+  padding-right: 1.25rem; /* 20px */
+  /* margin-bottom: .5rem; */
+}
+@media (min-width: 640px){ /* sm */
+  .page-container{ padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+@media (min-width: 768px){ /* md */
+  .page-container{ padding-left: 3rem; padding-right: 3rem; }
+}
+@media (min-width: 1024px){ /* lg */
+  .page-container{ padding-left: 4rem; padding-right: 4rem; }
+}
+@media (min-width: 1280px){ /* xl */
+  .page-container{ padding-left: 5rem; padding-right: 5rem; }
+}
+@media (min-width: 1536px){ /* 2xl */
+  .page-container{ padding-left: 6rem; padding-right: 6rem; }
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  color: var(--text);
-  background-color: var(--surface);
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-
-.btn-primary {
-  background-color: var(--accent);
-  color: #ffffff;
-  border-color: transparent;
-}
-
-.btn-primary:hover {
-  background-color: var(--accent-hover);
+/* Navbar-specific vertical padding */
+header .page-container{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 @media (max-width: 1536px) {
@@ -138,3 +144,36 @@ a{
     padding: 0 20px;
   }
 }
+
+/* Underline hover animation for nav links */
+.nav-underline{
+  position: relative;
+}
+.nav-underline:hover, .nav-underline:focus-visible{
+  color: var(--accent);
+  transition: color 200ms ease-in-out;
+}
+.nav-underline::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px; /* small gap from text */
+  height: 2px;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease-in-out;
+}
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after{
+  transform: scaleX(1);
+}
+
+/* Active nav link: orange text and persistent underline */
+.nav-link-active{
+  color: var(--accent);
+}
+/* .nav-underline.nav-link-active::after{
+  /* transform: scaleX(1); */
+/* } */ 
