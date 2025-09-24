@@ -18,7 +18,7 @@ export default function Hero() {
 
 function HeroDesktop() {
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-6rem)] flex items-center py-10 sm:py-18">
+    <section className="relative overflow-hidden min-h-[calc(100vh-6rem)] flex items-center pt-6 sm:pt-14">
       <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-10 md:grid-cols-2">
           <DesktopLeft />
